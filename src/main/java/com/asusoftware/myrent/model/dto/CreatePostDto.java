@@ -17,6 +17,7 @@ import java.util.UUID;
 @Setter
 @ToString
 public class CreatePostDto {
+    //
     private UUID userId;
     private Address address;
     private String pricePerDay;
