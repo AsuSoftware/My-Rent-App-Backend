@@ -8,3 +8,10 @@
 - User can find vehicles based on his location
 - When the user rent a car, he pays for the rent
 - User can find vehicles based on the category selected
+# Technology Stack
+- Java 11
+- Spring Boot
+- Spring Data Jpa
+- PostgreSQL
+- Lombok
+- Maven
