@@ -47,4 +47,7 @@ public class Car {
     @NotBlank
     @Column(name = "color")
     private String color;
+
+    @OneToOne(mappedBy = "car", fetch = FetchType.LAZY)
+    private Post post;
 }

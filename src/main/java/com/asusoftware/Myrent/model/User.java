@@ -50,6 +50,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Embedded
     @NotNull
     @Column(name = "address")
     private Address address;
