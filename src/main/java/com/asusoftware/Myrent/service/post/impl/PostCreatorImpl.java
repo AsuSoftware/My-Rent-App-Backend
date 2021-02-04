@@ -1,6 +1,5 @@
 package com.asusoftware.Myrent.service.post.impl;
 
-import com.asusoftware.Myrent.model.Image;
 import com.asusoftware.Myrent.model.Post;
 import com.asusoftware.Myrent.model.User;
 import com.asusoftware.Myrent.model.dto.post.CreatePostDto;
@@ -10,9 +9,7 @@ import com.asusoftware.Myrent.service.user.UserFinder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * My-rent Created by Antonio on 2/3/2021

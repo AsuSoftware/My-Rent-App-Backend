@@ -9,7 +9,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -54,7 +53,4 @@ public class User {
     @NotNull
     @Column(name = "address")
     private Address address;
-
-    @OneToMany(mappedBy = "user")
-    private List<Post> posts;
 }

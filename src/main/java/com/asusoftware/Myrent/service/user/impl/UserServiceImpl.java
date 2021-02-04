@@ -1,8 +1,13 @@
 package com.asusoftware.Myrent.service.user.impl;
 
+import com.asusoftware.Myrent.model.Post;
+import com.asusoftware.Myrent.model.PostState;
 import com.asusoftware.Myrent.model.User;
+import com.asusoftware.Myrent.model.dto.post.ReserveDto;
 import com.asusoftware.Myrent.model.dto.user.CreateUserDto;
 import com.asusoftware.Myrent.model.dto.user.UserDto;
+import com.asusoftware.Myrent.service.post.PostFinder;
+import com.asusoftware.Myrent.service.post.reservation.ReservationService;
 import com.asusoftware.Myrent.service.user.UserCreator;
 import com.asusoftware.Myrent.service.user.UserFinder;
 import com.asusoftware.Myrent.service.user.UserRemoval;
@@ -24,6 +29,7 @@ public class UserServiceImpl implements UserService {
     private final UserCreator userCreator;
     private final UserFinder userFinder;
     private final UserRemoval userRemoval;
+    private final ReservationService reservationService;
 
     @Override
     public void create(CreateUserDto createUserDto) {

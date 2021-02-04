@@ -27,6 +27,7 @@ public class PostDto {
     @NotNull private List<String> images;
     @NotNull private UserDto user;
     @NotNull private CarDto car;
+    private Reservation reservation;
 
     public static Post toPost(PostDto postDto) {
         Post post = new Post();
@@ -50,6 +51,7 @@ public class PostDto {
         postDto.setCar(CarDto.toDto(post.getCar()));
         postDto.setImages(post.getImages());
         postDto.setUser(UserDto.toDto(post.getUser()));
+        postDto.setReservation(post.getReservation());
         return postDto;
     }
 }

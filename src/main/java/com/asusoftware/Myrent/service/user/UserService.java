@@ -1,6 +1,7 @@
 package com.asusoftware.Myrent.service.user;
 
 import com.asusoftware.Myrent.model.User;
+import com.asusoftware.Myrent.model.dto.post.ReserveDto;
 import com.asusoftware.Myrent.model.dto.user.CreateUserDto;
 import com.asusoftware.Myrent.model.dto.user.UserDto;
 

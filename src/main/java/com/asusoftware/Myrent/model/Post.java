@@ -53,6 +53,10 @@ public class Post {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id", nullable = false, referencedColumnName = "id")
     private Car car;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    private Reservation reservation;
 }
 
 // Per default non ci sono cascade aplicate

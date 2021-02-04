@@ -24,7 +24,6 @@ public class UserDto {
     @NotNull @JsonFormat(pattern="yyyy-MM-dd") private Date birthday;
     @Email @NotBlank private String email;
     @NotBlank private String phone;
-    // @NotBlank private String password;
     @NotNull private Address address;
 
     public static UserDto toDto(User user) {

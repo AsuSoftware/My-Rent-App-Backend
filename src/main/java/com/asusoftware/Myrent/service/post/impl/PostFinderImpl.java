@@ -1,5 +1,6 @@
 package com.asusoftware.Myrent.service.post.impl;
 
+import com.asusoftware.Myrent.exception.PostNotFoundException;
 import com.asusoftware.Myrent.model.Post;
 import com.asusoftware.Myrent.model.PostCategory;
 import com.asusoftware.Myrent.repository.PostRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -24,5 +26,10 @@ public class PostFinderImpl implements PostFinder {
         return postRepository.findAll().stream()
                 .filter(post -> post.getPostCategory().equals(postCategory))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Post findById(UUID id) {
+        return postRepository.findById(id).orElseThrow(PostNotFoundException::new);
     }
 }

@@ -3,6 +3,7 @@ package com.asusoftware.Myrent.controller;
 import com.asusoftware.Myrent.model.PostCategory;
 import com.asusoftware.Myrent.model.dto.post.CreatePostDto;
 import com.asusoftware.Myrent.model.dto.post.PostDto;
+import com.asusoftware.Myrent.model.dto.post.ReserveDto;
 import com.asusoftware.Myrent.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,11 @@ public class PostController {
     @GetMapping(path = "/{category}")
     public List<PostDto> findAllByCategory(@PathVariable(name = "category") PostCategory postCategory) {
         return postService.findAllByCategory(postCategory);
+    }
+
+    @PostMapping(path = "/reserve/{id}")
+    public void reserve(@PathVariable(name = "id") UUID id, @Valid @RequestBody ReserveDto reserveDto) {
+        System.out.println(reserveDto);
+        postService.reserve(id, reserveDto);
     }
 }
