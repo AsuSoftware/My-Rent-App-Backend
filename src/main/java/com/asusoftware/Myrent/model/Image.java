@@ -23,8 +23,4 @@ public class Image {
     @NotBlank
     @Column(name = "value")
     private String value;
-
-    @ManyToOne
-    @JoinColumn(name="post_id", nullable=false)
-    private Post post;
 }

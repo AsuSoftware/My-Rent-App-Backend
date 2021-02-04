@@ -7,6 +7,7 @@ import com.asusoftware.Myrent.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping(path = "/{id}")
-    public void create(@PathVariable(name = "id") UUID id, CreatePostDto createPostDto) {
+    public void create(@PathVariable(name = "id") UUID id, @Valid @RequestBody CreatePostDto createPostDto) {
         postService.create(id, createPostDto);
     }
 

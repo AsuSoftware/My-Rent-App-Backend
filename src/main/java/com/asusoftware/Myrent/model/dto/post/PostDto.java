@@ -24,9 +24,9 @@ public class PostDto {
     @NotBlank private String pricePerDay;
     @NotNull private PostState postState;
     @NotNull private PostCategory postCategory;
-    @NotNull private List<Image> images;
-    @NotNull private UserDto userDto;
-    @NotNull private CarDto carDto;
+    @NotNull private List<String> images;
+    @NotNull private UserDto user;
+    @NotNull private CarDto car;
 
     public static Post toPost(PostDto postDto) {
         Post post = new Post();
@@ -34,9 +34,9 @@ public class PostDto {
         post.setAddress(postDto.getAddress());
         post.setPricePerDay(postDto.getPricePerDay());
         post.setPostCategory(postDto.getPostCategory());
-        post.setImages(postDto.getImages());
         post.setPostState(postDto.getPostState());
-        post.setCar(CarDto.toEntity(postDto.getCarDto()));
+        post.setCar(CarDto.toEntity(postDto.getCar()));
+        post.setImages(postDto.getImages());
         return post;
     }
 
@@ -44,11 +44,12 @@ public class PostDto {
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());
         postDto.setAddress(post.getAddress());
-        postDto.setPricePerDay(postDto.getPricePerDay());
+        postDto.setPricePerDay(post.getPricePerDay());
         postDto.setPostCategory(post.getPostCategory());
-        postDto.setImages(post.getImages());
         postDto.setPostState(post.getPostState());
-        postDto.setCarDto(CarDto.toDto(post.getCar()));
+        postDto.setCar(CarDto.toDto(post.getCar()));
+        postDto.setImages(post.getImages());
+        postDto.setUser(UserDto.toDto(post.getUser()));
         return postDto;
     }
 }

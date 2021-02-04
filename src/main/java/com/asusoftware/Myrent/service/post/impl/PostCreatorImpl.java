@@ -1,14 +1,9 @@
 package com.asusoftware.Myrent.service.post.impl;
 
-import com.asusoftware.Myrent.model.Car;
 import com.asusoftware.Myrent.model.Image;
 import com.asusoftware.Myrent.model.Post;
 import com.asusoftware.Myrent.model.User;
-import com.asusoftware.Myrent.model.dto.post.CarDto;
 import com.asusoftware.Myrent.model.dto.post.CreatePostDto;
-import com.asusoftware.Myrent.model.dto.post.PostDto;
-import com.asusoftware.Myrent.repository.CarRepository;
-import com.asusoftware.Myrent.repository.ImageRepository;
 import com.asusoftware.Myrent.repository.PostRepository;
 import com.asusoftware.Myrent.service.post.PostCreator;
 import com.asusoftware.Myrent.service.user.UserFinder;
@@ -28,25 +23,13 @@ public class PostCreatorImpl implements PostCreator {
 
     private final PostRepository postRepository;
     private final UserFinder userFinder;
-    private final ImageRepository imageRepository;
-    private final CarRepository carRepository;
 
     @Override
     public void create(UUID id, CreatePostDto createPostDto) {
+        // Siccome abbiamo messo la cascada, si occupera hibernate di salvare tutto per noi, cioè le entità correlate al specifico entity
         User user = userFinder.findById(id);
         Post post = CreatePostDto.toPost(createPostDto);
-        Car car = carRepository.save(CarDto.toEntity(createPostDto.getCarDto()));
         post.setUser(user);
-        post.setCar(car);
-        List<Image> image = createPostDto.getImages().stream()
-                .map(img -> {
-                   Image imag = new Image();
-                   imag.setValue(img);
-                   imag.setPost(post);
-                   return imag;
-                })
-                .collect(Collectors.toList());
         postRepository.save(post);
-        imageRepository.saveAll(image);
     }
 }

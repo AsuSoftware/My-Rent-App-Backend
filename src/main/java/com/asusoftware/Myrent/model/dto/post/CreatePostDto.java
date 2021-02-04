@@ -3,6 +3,7 @@ package com.asusoftware.Myrent.model.dto.post;
 import com.asusoftware.Myrent.model.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,8 +18,8 @@ public class CreatePostDto {
     @NotNull private Address address;
     @NotBlank private String pricePerDay;
     @NotNull private PostCategory postCategory;
-    @NotBlank private List<String> images;
-    @NotNull private CarDto carDto;
+    @NotNull private List<String> images;
+    @NotNull private CarDto car;
 
     public static Post toPost(CreatePostDto createPostDto) {
         Post post = new Post();
@@ -26,6 +27,8 @@ public class CreatePostDto {
         post.setPricePerDay(createPostDto.getPricePerDay());
         post.setPostCategory(createPostDto.getPostCategory());
         post.setPostState(PostState.FREE);
+        post.setCar(CarDto.toEntity(createPostDto.getCar()));
+        post.setImages(createPostDto.getImages());
         return post;
     }
 }

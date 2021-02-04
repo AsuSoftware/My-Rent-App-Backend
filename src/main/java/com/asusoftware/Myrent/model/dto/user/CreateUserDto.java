@@ -32,7 +32,7 @@ public class CreateUserDto {
         user.setEmail(createUserDto.getEmail());
         user.setPhone(createUserDto.getPhone());
         user.setPassword(createUserDto.getPassword());
-        user.setBirthday(user.getBirthday());
+        user.setBirthday(createUserDto.getBirthday());
         user.setAddress(createUserDto.getAddress());
         return user;
     }

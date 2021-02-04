@@ -42,14 +42,17 @@ public class Post {
     private PostCategory postCategory;
 
     @NotNull
-    @OneToMany(mappedBy = "post")
-    private List<Image> images;
+    @ElementCollection
+    @Column(name = "images")
+    private List<String> images;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name="user_id", nullable=false, referencedColumnName = "id")
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    @JoinColumn(name = "car_id", nullable = false, referencedColumnName = "id")
     private Car car;
 }
+
+// Per default non ci sono cascade aplicate

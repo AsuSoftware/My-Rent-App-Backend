@@ -24,7 +24,7 @@ public class UserDto {
     @NotNull @JsonFormat(pattern="yyyy-MM-dd") private Date birthday;
     @Email @NotBlank private String email;
     @NotBlank private String phone;
-    @NotBlank private String password;
+    // @NotBlank private String password;
     @NotNull private Address address;
 
     public static UserDto toDto(User user) {
@@ -35,6 +35,7 @@ public class UserDto {
         userDto.setEmail(user.getEmail());
         userDto.setPhone(user.getPhone());
         userDto.setBirthday(user.getBirthday());
+        userDto.setAddress(user.getAddress());
         return userDto;
     }
 
@@ -45,7 +46,8 @@ public class UserDto {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setPhone(userDto.getPhone());
-        user.setBirthday(user.getBirthday());
+        user.setBirthday(userDto.getBirthday());
+        user.setAddress(userDto.getAddress());
         return user;
     }
 }
