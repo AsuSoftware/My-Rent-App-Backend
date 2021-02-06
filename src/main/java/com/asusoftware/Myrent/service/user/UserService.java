@@ -1,8 +1,7 @@
 package com.asusoftware.Myrent.service.user;
 
-import com.asusoftware.Myrent.model.User;
-import com.asusoftware.Myrent.model.dto.post.ReserveDto;
 import com.asusoftware.Myrent.model.dto.user.CreateUserDto;
+import com.asusoftware.Myrent.model.dto.user.LoginDto;
 import com.asusoftware.Myrent.model.dto.user.UserDto;
 
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.UUID;
  */
 public interface UserService {
     void create(CreateUserDto createUserDto);
+    String login(LoginDto loginDto);
     List<UserDto> findAll();
     UserDto findById(UUID id);
     void delete(UUID id);

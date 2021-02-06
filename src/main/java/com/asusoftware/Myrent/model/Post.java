@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,21 +43,24 @@ public class Post {
     private PostCategory postCategory;
 
     @NotNull
+    @Column(name = "created_at")
+    private LocalDateTime createdAt; // with this we can show the post from new to old, using filter
+
+    @NotNull
     @ElementCollection
     @Column(name = "images")
     private List<String> images;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", referencedColumnName = "id", nullable = false)
+    private Car car;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false, referencedColumnName = "id")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_id", nullable = false, referencedColumnName = "id")
-    private Car car;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
-    private Reservation reservation;
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
+    private Rent rent;
 }
 
 // Per default non ci sono cascade aplicate

@@ -3,7 +3,6 @@ package com.asusoftware.Myrent.model.dto.post;
 import com.asusoftware.Myrent.model.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

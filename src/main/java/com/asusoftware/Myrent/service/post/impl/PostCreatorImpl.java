@@ -9,6 +9,8 @@ import com.asusoftware.Myrent.service.user.UserFinder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.UUID;
 
 /**
@@ -26,6 +28,7 @@ public class PostCreatorImpl implements PostCreator {
         // Siccome abbiamo messo la cascada, si occupera hibernate di salvare tutto per noi, cioè le entità correlate al specifico entity
         User user = userFinder.findById(id);
         Post post = CreatePostDto.toPost(createPostDto);
+        post.setCreatedAt(LocalDateTime.now(ZoneOffset.UTC));
         post.setUser(user);
         postRepository.save(post);
     }

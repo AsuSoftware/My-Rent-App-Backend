@@ -1,13 +1,10 @@
 package com.asusoftware.Myrent.service.user.impl;
 
-import com.asusoftware.Myrent.model.Post;
-import com.asusoftware.Myrent.model.PostState;
+import com.asusoftware.Myrent.exception.UserNotFoundException;
 import com.asusoftware.Myrent.model.User;
-import com.asusoftware.Myrent.model.dto.post.ReserveDto;
 import com.asusoftware.Myrent.model.dto.user.CreateUserDto;
+import com.asusoftware.Myrent.model.dto.user.LoginDto;
 import com.asusoftware.Myrent.model.dto.user.UserDto;
-import com.asusoftware.Myrent.service.post.PostFinder;
-import com.asusoftware.Myrent.service.post.reservation.ReservationService;
 import com.asusoftware.Myrent.service.user.UserCreator;
 import com.asusoftware.Myrent.service.user.UserFinder;
 import com.asusoftware.Myrent.service.user.UserRemoval;
@@ -29,11 +26,20 @@ public class UserServiceImpl implements UserService {
     private final UserCreator userCreator;
     private final UserFinder userFinder;
     private final UserRemoval userRemoval;
-    private final ReservationService reservationService;
 
     @Override
     public void create(CreateUserDto createUserDto) {
        userCreator.create(createUserDto);
+    }
+
+    @Override
+    public String login(LoginDto loginDto) {
+        User user = userFinder.findAll().stream()
+                .filter(user1 -> user1.getEmail().equals(loginDto.getEmail()) && user1.getPassword().equals(loginDto.getPassword()))
+                .findFirst()
+                .orElseThrow(UserNotFoundException::new);
+        // TODO: get token when we use security
+        return null;
     }
 
     @Override

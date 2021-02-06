@@ -1,9 +1,9 @@
 package com.asusoftware.Myrent.controller;
 
+import com.asusoftware.Myrent.controller.payload.FindPostResponse;
 import com.asusoftware.Myrent.model.PostCategory;
 import com.asusoftware.Myrent.model.dto.post.CreatePostDto;
 import com.asusoftware.Myrent.model.dto.post.PostDto;
-import com.asusoftware.Myrent.model.dto.post.ReserveDto;
 import com.asusoftware.Myrent.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +27,22 @@ public class PostController {
         postService.create(id, createPostDto);
     }
 
+    /*
     @GetMapping(path = "/{category}")
     public List<PostDto> findAllByCategory(@PathVariable(name = "category") PostCategory postCategory) {
         return postService.findAllByCategory(postCategory);
+    } */
+
+    @GetMapping
+    public FindPostResponse findAll(@RequestParam int page, @RequestParam int size) {
+        long total = postService.count();
+        List<PostDto> postDtos = postService.findAll(page, size);
+        return FindPostResponse.builder()
+                .page(page)
+                .size(size)
+                .total(total)
+                .posts(postDtos)
+                .build();
     }
 
-    @PostMapping(path = "/reserve/{id}")
-    public void reserve(@PathVariable(name = "id") UUID id, @Valid @RequestBody ReserveDto reserveDto) {
-        System.out.println(reserveDto);
-        postService.reserve(id, reserveDto);
-    }
 }

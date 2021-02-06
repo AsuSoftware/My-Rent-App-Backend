@@ -1,6 +1,5 @@
 package com.asusoftware.Myrent.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -32,7 +32,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @NotNull
     @Column(name = "birthday")
     private Date birthday;
 
@@ -42,15 +42,17 @@ public class User {
     private String email;
 
     @NotBlank
-    @Column(name = "phone")
-    private String phone;
-
-    @NotBlank
     @Column(name = "password")
     private String password;
 
-    @Embedded
+    @NotBlank
+    @Column(name = "phone")
+    private String phone;
+
     @NotNull
     @Column(name = "address")
     private Address address;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Rent> rents;
 }

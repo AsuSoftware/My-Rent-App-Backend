@@ -3,7 +3,6 @@ package com.asusoftware.Myrent.service.post;
 import com.asusoftware.Myrent.model.PostCategory;
 import com.asusoftware.Myrent.model.dto.post.CreatePostDto;
 import com.asusoftware.Myrent.model.dto.post.PostDto;
-import com.asusoftware.Myrent.model.dto.post.ReserveDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,5 +13,6 @@ import java.util.UUID;
 public interface PostService {
     void create(UUID id, CreatePostDto createPostDto);
     List<PostDto> findAllByCategory(PostCategory postCategory);
-    void reserve(UUID id, ReserveDto reserveDto);
+    List<PostDto> findAll(int page, int size);
+    Long count();
 }

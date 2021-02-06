@@ -1,6 +1,7 @@
 package com.asusoftware.Myrent.controller;
 
 import com.asusoftware.Myrent.model.dto.user.CreateUserDto;
+import com.asusoftware.Myrent.model.dto.user.LoginDto;
 import com.asusoftware.Myrent.model.dto.user.UserDto;
 import com.asusoftware.Myrent.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,9 @@ public class UserController {
     public void create(@Valid @RequestBody CreateUserDto createUserDto) {
         userService.create(createUserDto);
     }
+
+    @PostMapping(path = "/login")
+    public void login(@Valid @RequestBody LoginDto loginDto) {}
 
     @GetMapping
     public List<UserDto> findAll() {

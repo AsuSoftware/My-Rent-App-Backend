@@ -11,5 +11,6 @@ import java.util.UUID;
  */
 public interface PostFinder {
     List<Post> findAllByCategory(PostCategory postCategory);
+    List<Post> findAll(int page, int size);
     Post findById(UUID id);
 }
